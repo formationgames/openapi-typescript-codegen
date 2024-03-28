@@ -79,7 +79,7 @@ export const registerHandlebarHelpers = (root: {
             options: Handlebars.HelperOptions
         ) {
             if (!root.useUnionTypes && parent && name) {
-                return `${parent}.${name}`;
+                return `${parent}_${name}`;
             }
             return options.fn(
                 enumerators
