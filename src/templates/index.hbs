@@ -22,7 +22,9 @@ export type { {{{name}}}{{#if @root.postfixModels}} as {{{name}}}{{{@root.postfi
 {{else if enum}}
 export { {{{name}}}{{#if @root.postfixModels}} as {{{name}}}{{{@root.postfixModels}}}{{/if}} } from './models/{{{name}}}';
 {{else if enums}}
-export { {{{name}}}{{#if @root.postfixModels}} as {{{name}}}{{{@root.postfixModels}}}{{/if}} } from './models/{{{name}}}';
+{{#each enums}}
+export { {{{../name}}}_{{{name}}} } from './models/{{{../name}}}';
+{{/each}}
 {{else}}
 export type { {{{name}}}{{#if @root.postfixModels}} as {{{name}}}{{{@root.postfixModels}}}{{/if}} } from './models/{{{name}}}';
 {{/if}}
