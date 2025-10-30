@@ -83,7 +83,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return __request(OpenAPI, this.http, {
 	{{else}}
-	public static {{{name}}}({{>parameters}}, headers?: { [name: string]: string }): CancelablePromise<{{>result}}> {
+	public static {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
 		return __request(OpenAPI, {
 	{{/equals}}
 	{{/if}}
@@ -103,8 +103,13 @@ export class {{{name}}}{{{@root.postfix}}} {
 				{{/each}}
 			},
 			{{/if}}
-			headers: headers
+			{{#if parametersHeader}}
+			headers: {
+				{{#each parametersHeader}}
+				'{{{prop}}}': {{{name}}},
+				{{/each}}
 			},
+			{{/if}}
 			{{#if parametersQuery}}
 			query: {
 				{{#each parametersQuery}}
